@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: location-tracker
+    env: node
+    buildCommand: "npm install && cd frontend && npm install && npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: PORT
+        value: "5000"
+      - key: VITE_GOOGLE_MAPS_API_KEY
+        sync: false
+      - key: VITE_BACKEND_URL
+        value: ""
