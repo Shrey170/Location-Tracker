@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📍 Location Tracker</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="glass-container">
+    <h2>📍 Location Tracker</h2>
+    
+    <input type="text" id="sender" placeholder="Your Name or Number" />
+    <input type="text" id="receiver" placeholder="Receiver Name or Number" />
+
+    <button class="primary" onclick="sendRequest()">
+      🚀 Send Request
+    </button>
+    <button class="accent" onclick="generateLink()">
+      🔗 Generate Link
+    </button>
+    <button class="success" onclick="sendViaWhatsApp()">
+      💬 Send via WhatsApp
+    </button>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js?v=5"></script>
+</body>
+</html>
