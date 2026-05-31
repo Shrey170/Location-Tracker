@@ -25,7 +25,7 @@
 ### Setup & Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/2k33cse992574/location-tracker.git
+   git clone https://github.com/Shrey170/Location-Tracker.git
    cd location-tracker
    ```
 
