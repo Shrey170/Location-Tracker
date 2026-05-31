@@ -24,20 +24,13 @@ mongoose.connect(process.env.MONGO_URI, {
 const locationRoutes = require("./routes/location");
 app.use("/api/location", locationRoutes);
 
-// ✅ Serve Static Frontend Files
-app.use(express.static(path.join(__dirname, "public")));
+// ✅ Serve Static Frontend Files from React Build
+const frontendDistPath = path.join(__dirname, "frontend", "dist");
+app.use(express.static(frontendDistPath));
 
-// ✅ Handle frontend routes (index.html, accept.html, track.html)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.get("/accept.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "accept.html"));
-});
-
-app.get("/track.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "track.html"));
+// ✅ Handle frontend routes (Catch-all for React Router)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendDistPath, "index.html"));
 });
 
 // ✅ 404 fallback for other requests
