@@ -44,20 +44,22 @@ function Track() {
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/location/track/${requestId}`);
+      const apiUrl = import.meta.env.VITE_BACKEND_URL || '';
+      const response = await fetch(`${apiUrl}/api/location/${requestId}`);
       const data = await response.json();
 
-      if (data.status === 'active' && data.location) {
-        updateLocationOnMap(data.location.latitude, data.location.longitude);
+      if (response.ok && data.latitude && data.longitude) {
+        updateLocationOnMap(data.latitude, data.longitude);
         setStatus('✅ Tracking started. Awaiting live updates...');
 
         // Connect WebSocket for live updates
         socket.on(`locationUpdate-${requestId}`, (locationData) => {
           updateLocationOnMap(locationData.latitude, locationData.longitude);
         });
-      } else if (data.status === 'pending') {
+      } else if (data.message === "Location not available yet.") {
         setStatus('⏳ Waiting for the receiver to accept...');
+      } else if (data.message === "Location not shared yet.") {
+        setStatus('⏳ Receiver accepted, waiting for GPS signal...');
       } else {
         setStatus('❌ Invalid or expired tracking ID.');
       }

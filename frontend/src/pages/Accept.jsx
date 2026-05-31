@@ -16,7 +16,7 @@ function Accept() {
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_BACKEND_URL || '';
       const response = await fetch(`${apiUrl}/api/location/accept`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -42,7 +42,7 @@ function Accept() {
 
   const sendLocation = async (latitude, longitude, reqId) => {
     try {
-      const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_BACKEND_URL || '';
       await fetch(`${apiUrl}/api/location/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

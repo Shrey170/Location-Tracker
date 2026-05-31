@@ -7,7 +7,7 @@ import { io } from 'socket.io-client';
 
 // We can just establish a single socket connection to our backend
 // Note: In development the backend might be on a different port (e.g. 5000), we should proxy it or set the URL directly.
-export const socket = io(import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000');
+export const socket = io(import.meta.env.VITE_BACKEND_URL || '', { path: '/socket.io' });
 
 function App() {
   return (

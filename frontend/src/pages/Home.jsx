@@ -15,7 +15,7 @@ function Home() {
     setError('');
     
     try {
-      const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_BACKEND_URL || '';
       const response = await fetch(`${apiUrl}/api/location/send`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
